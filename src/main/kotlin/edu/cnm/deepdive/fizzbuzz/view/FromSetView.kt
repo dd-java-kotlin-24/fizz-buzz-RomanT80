@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.fizzbuzz.view
 
 import edu.cnm.deepdive.fizzbuzz.model.FizzBuzz
+import java.util.ResourceBundle
 
 class FromSetView : FizzBuzzView<Set<FizzBuzz>> {
     /**
@@ -33,10 +34,16 @@ class FromSetView : FizzBuzzView<Set<FizzBuzz>> {
     }
 
     companion object {
-        const val FIZZ_REPRESENTATION = "Fiddle"
-        const val BUZZ_REPRESENTATION = "Faddle"
-        const val FIZZ_BUZZ_REPRESENTATION = "$FIZZ_REPRESENTATION -$BUZZ_REPRESENTATION"
+        val FIZZ_REPRESENTATION :String
+        val BUZZ_REPRESENTATION :String
+        val FIZZ_BUZZ_REPRESENTATION: String
 
+        init {
+            val bundle = ResourceBundle.getBundle("strings")
+            FIZZ_REPRESENTATION = bundle.getString("fizz-representation")
+            BUZZ_REPRESENTATION = bundle.getString("buzz-representation")
+            FIZZ_BUZZ_REPRESENTATION = bundle.getString("fizzbuzz-representation")
+        }
     }
 
 }
