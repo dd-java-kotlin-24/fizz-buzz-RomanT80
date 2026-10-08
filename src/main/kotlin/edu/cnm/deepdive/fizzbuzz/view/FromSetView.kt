@@ -21,6 +21,22 @@ class FromSetView : FizzBuzzView<Set<FizzBuzz>> {
      * @return the string representation determined by [value] and [evaluation].
      */
     override fun render(value: Int, evaluation: Set<FizzBuzz>): String {
-        TODO("Not yet implemented")
+
+        return when{
+            (evaluation == setOf(FizzBuzz.FIZZ)) -> FIZZ_REPRESENTATION
+            (evaluation == setOf(FizzBuzz.BUZZ)) -> BUZZ_REPRESENTATION
+            (evaluation == setOf(FizzBuzz.FIZZ, FizzBuzz.BUZZ)) -> FIZZ_BUZZ_REPRESENTATION
+            else -> value.toString()
+        }
+
+
     }
+
+    companion object {
+        const val FIZZ_REPRESENTATION = "FIZZ"
+        const val BUZZ_REPRESENTATION = "BUZZ"
+        const val FIZZ_BUZZ_REPRESENTATION = "FIZZBUZZ"
+
+    }
+
 }
