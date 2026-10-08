@@ -1,5 +1,7 @@
 package edu.cnm.deepdive.fizzbuzz.service
 
+import edu.cnm.deepdive.fizzbuzz.model.FizzBuzz
+
 class ToSetEvaluator : FizzBuzzEvaluator<Set<FizzBuzz>> {
     /**
      * Computes and returns a [Set][Set<FizzBuzz>] value indicating whether [input] is evenly
@@ -33,11 +35,6 @@ class ToSetEvaluator : FizzBuzzEvaluator<Set<FizzBuzz>> {
         return evaluation
 
     }
-
-}
-enum class FizzBuzz{
-    FIZZ,
-    BUZZ,
 
 }
 

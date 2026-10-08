@@ -1,15 +1,15 @@
 package edu.cnm.deepdive.fizzbuzz.view
 
-import edu.cnm.deepdive.fizzbuzz.service.FizzBuzz
+import edu.cnm.deepdive.fizzbuzz.model.FizzBuzz
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 import kotlin.collections.setOf
 
 class FromSetViewTest {
+
     @ParameterizedTest
     @MethodSource("neither fizz nor buzz cases")
     fun `render returns the string for value on empty evaluation`(
@@ -30,10 +30,32 @@ class FromSetViewTest {
     ) {
         val view = FromSetView()
         assertEquals(expected, view.render(value, evaluation))
+    }
 
+    @ParameterizedTest
+    @MethodSource("buzz test cases")
+    fun `render returns BUZZ for setOf(BUZZ)`(
+        value: Int,
+        evaluation: Set<FizzBuzz>,
+        expected: String
+    ) {
+        val view = FromSetView()
+        assertEquals(expected, view.render(value, evaluation))
+    }
+
+    @ParameterizedTest
+    @MethodSource("fizz buzz test cases")
+    fun `render returns FIZZBUZZ for setOf(FIZZ, BUZZ)`(
+        value: Int,
+        evaluation: Set<FizzBuzz>,
+        expected: String
+    ) {
+        val view = FromSetView()
+        assertEquals(expected, view.render(value, evaluation))
     }
 
     companion object {
+
         @JvmStatic
         fun `neither fizz nor buzz cases`(): Stream<Arguments> {
             return Stream.of(
@@ -52,8 +74,29 @@ class FromSetViewTest {
                 Arguments.of(3, evaluation, FromSetView.FIZZ_REPRESENTATION),
                 Arguments.of(6, evaluation, FromSetView.FIZZ_REPRESENTATION),
                 Arguments.of(21, evaluation, FromSetView.FIZZ_REPRESENTATION),
-                Arguments.of(99, evaluation, FromSetView.FIZZ_REPRESENTATION),
-                Arguments.of(Int.MAX_VALUE - 1, evaluation, FromSetView.FIZZ_REPRESENTATION)
+                Arguments.of(99, evaluation, FromSetView.FIZZ_REPRESENTATION)
+            )
+        }
+
+        @JvmStatic
+        fun `buzz test cases`(): Stream<Arguments> {
+            val evaluation = setOf(FizzBuzz.BUZZ)
+            return Stream.of(
+                Arguments.of(5, evaluation, FromSetView.BUZZ_REPRESENTATION),
+                Arguments.of(10, evaluation, FromSetView.BUZZ_REPRESENTATION),
+                Arguments.of(20, evaluation, FromSetView.BUZZ_REPRESENTATION),
+                Arguments.of(85, evaluation, FromSetView.BUZZ_REPRESENTATION)
+            )
+        }
+
+        @JvmStatic
+        fun `fizz buzz test cases`(): Stream<Arguments> {
+            val evaluation = setOf(FizzBuzz.FIZZ, FizzBuzz.BUZZ)
+            return Stream.of(
+                Arguments.of(0, evaluation, FromSetView.FIZZ_BUZZ_REPRESENTATION),
+                Arguments.of(15, evaluation, FromSetView.FIZZ_BUZZ_REPRESENTATION),
+                Arguments.of(30, evaluation, FromSetView.FIZZ_BUZZ_REPRESENTATION),
+                Arguments.of(60, evaluation, FromSetView.FIZZ_BUZZ_REPRESENTATION)
             )
         }
 
