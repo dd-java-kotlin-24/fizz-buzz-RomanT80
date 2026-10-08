@@ -33,10 +33,9 @@ class FromSetView : FizzBuzzView<Set<FizzBuzz>> {
     }
 
     companion object {
-        const val FIZZ_REPRESENTATION = "FIZZ"
-        const val BUZZ_REPRESENTATION = "BUZZ"
-        const val FIZZ_BUZZ_REPRESENTATION = FIZZ_REPRESENTATION +
-            BUZZ_REPRESENTATION
+        const val FIZZ_REPRESENTATION = "Fiddle"
+        const val BUZZ_REPRESENTATION = "Faddle"
+        const val FIZZ_BUZZ_REPRESENTATION = "$FIZZ_REPRESENTATION -$BUZZ_REPRESENTATION"
 
     }
 
